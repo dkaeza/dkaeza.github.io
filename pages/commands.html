@@ -1,0 +1,61 @@
+<div class="commands-container">
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-8 mb-3 mb-md-0">
+            <div class="input-group">
+                <span class="input-group-text bg-transparent">
+                    <i class="fas fa-search"></i>
+                </span>
+                <input type="text" class="form-control" id="command-search" placeholder="Search commands...">
+                <select class="form-select" id="category-filter" style="max-width: 150px;">
+                    <option value="All">All</option>
+                    <option value="Utility">Utility</option>
+                    <option value="Music">Music</option>
+                    <option value="Moderation">Moderation</option>
+                    <option value="Fun">Fun</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <button id="new-command-btn" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i>New Command
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Left side - Commands list -->
+        <div class="col-md-5 mb-4 mb-md-0">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-transparent border-0">
+                    <h5 class="card-title mb-0">Commands</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush" id="commands-list">
+                        <!-- Commands will be inserted here by JS -->
+                        <div class="text-center py-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right side - Command editor -->
+        <div class="col-md-7">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-transparent border-0">
+                    <h5 class="card-title mb-0">Command Editor</h5>
+                </div>
+                <div class="card-body" id="command-editor">
+                    <!-- Command editor will be inserted here by JS -->
+                    <div class="text-center py-5">
+                        <p class="text-muted">Select a command to edit or create a new one</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

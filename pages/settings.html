@@ -1,0 +1,180 @@
+<div class="settings-container">
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-8">
+            <h3 class="mb-0">Bot Settings</h3>
+            <p class="text-muted mb-0">Configure global settings for your Discord bot</p>
+        </div>
+        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+            <div class="btn-group">
+                <button class="btn btn-outline-secondary" id="export-settings-btn">
+                    <i class="fas fa-download me-2"></i>Export
+                </button>
+                <button class="btn btn-outline-secondary" id="import-settings-btn">
+                    <i class="fas fa-upload me-2"></i>Import
+                </button>
+                <input type="file" id="import-file" style="display: none" accept=".json">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <form id="settings-form">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h5 class="mb-3">General Settings</h5>
+                                
+                                <div class="mb-3">
+                                    <label for="settings-prefix" class="form-label">Default Command Prefix</label>
+                                    <input type="text" class="form-control" id="settings-prefix" value="!">
+                                    <div class="form-text">The prefix used to trigger bot commands (can be overridden per server)</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="settings-cooldown" class="form-label">Default Command Cooldown (seconds)</label>
+                                    <input type="number" class="form-control" id="settings-cooldown" min="0" value="3">
+                                    <div class="form-text">Time users must wait between command uses</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="settings-language" class="form-label">Bot Language</label>
+                                    <select class="form-select" id="settings-language">
+                                        <option value="english" selected>English</option>
+                                        <option value="french">French</option>
+                                        <option value="german">German</option>
+                                        <option value="spanish">Spanish</option>
+                                    </select>
+                                    <div class="form-text">Language for bot responses</div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <h5 class="mb-3">Status Settings</h5>
+                                
+                                <div class="mb-3">
+                                    <label for="settings-status" class="form-label">Status Message</label>
+                                    <input type="text" class="form-control" id="settings-status" value="Serving {servers} servers!">
+                                    <div class="form-text">Use {servers} and {users} as placeholders for counts</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="settings-status-type" class="form-label">Status Type</label>
+                                    <select class="form-select" id="settings-status-type">
+                                        <option value="PLAYING" selected>Playing</option>
+                                        <option value="WATCHING">Watching</option>
+                                        <option value="LISTENING">Listening to</option>
+                                        <option value="COMPETING">Competing in</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="settings-mention-prefix">
+                                        <label class="form-check-label" for="settings-mention-prefix">Allow Mention as Prefix</label>
+                                    </div>
+                                    <div class="form-text">Allow users to mention the bot instead of using a prefix</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="mb-3">Message Handling</h5>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="settings-delete-commands" checked>
+                                                <label class="form-check-label" for="settings-delete-commands">Delete Command Messages</label>
+                                            </div>
+                                            <div class="form-text">Automatically delete user messages that contain commands</div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="settings-log-commands" checked>
+                                                <label class="form-check-label" for="settings-log-commands">Log Commands</label>
+                                            </div>
+                                            <div class="form-text">Log all command usage</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="settings-respond-bots">
+                                                <label class="form-check-label" for="settings-respond-bots">Respond to Bots</label>
+                                            </div>
+                                            <div class="form-text">Whether the bot should respond to other bots</div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="settings-respond-dms" checked>
+                                                <label class="form-check-label" for="settings-respond-dms">Respond to DMs</label>
+                                            </div>
+                                            <div class="form-text">Whether the bot should respond to direct messages</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="mb-3">Command Categories</h5>
+                                <p class="text-muted">Disable entire categories of commands globally</p>
+                                
+                                <div class="row">
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input category-toggle" type="checkbox" id="category-utility" data-category="Utility" checked>
+                                            <label class="form-check-label" for="category-utility">Utility</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input category-toggle" type="checkbox" id="category-music" data-category="Music" checked>
+                                            <label class="form-check-label" for="category-music">Music</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input category-toggle" type="checkbox" id="category-moderation" data-category="Moderation" checked>
+                                            <label class="form-check-label" for="category-moderation">Moderation</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input category-toggle" type="checkbox" id="category-fun" data-category="Fun" checked>
+                                            <label class="form-check-label" for="category-fun">Fun</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input category-toggle" type="checkbox" id="category-admin" data-category="Admin" checked>
+                                            <label class="form-check-label" for="category-admin">Admin</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-danger" id="reset-settings-btn">
+                                <i class="fas fa-undo me-2"></i>Reset to Default
+                            </button>
+                            
+                            <button type="button" class="btn btn-primary" id="save-settings-btn">
+                                <i class="fas fa-save me-2"></i>Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
